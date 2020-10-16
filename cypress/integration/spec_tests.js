@@ -15,7 +15,7 @@ describe("User Onboarding App", () => {
 
   it('Get Name, Type A Name, Test Value', () => {
     sauceInput()
-      .click("James")
+      .click()
       .should('be.checked')
   })
 
