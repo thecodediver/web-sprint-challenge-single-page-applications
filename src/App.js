@@ -1,10 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
+import { Route } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import HomeContent from './components/HomeContent'
+import FormContent from './components/FormContent'
+import Success from './components/Success'
 
 const App = () => {
+  const [order, setOrder] = useState([])
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
+      <Header />
+      <Route exact path="/">
+        <HomeContent />
+      </Route>
+      <Route path="/pizza">
+        <FormContent order={order} setOrder={setOrder} />
+      </Route>
+      <Route path="/success">
+        <Success order={order} />
+      </Route>
+      <Footer />
     </>
   );
 };
