@@ -5,7 +5,21 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 const StyledFormContent = styled.div`
+  text-align: center;
+  .individual-fields {
+    margin: 20px 5px;
+  }
 
+  .count {
+    width: 40px;
+  }
+
+  button {
+    font-size: 2rem;
+    box-shadow: 1px 1px 3px black;
+    background-color: #333;
+    color: white;
+  }
 `
 
 const schema = yup.object().shape({
@@ -110,13 +124,15 @@ function FormContent(props) {
 
   return (
     <StyledFormContent>
+      <h1>Order Your Pizza Below!</h1>
       <form onSubmit={submit}>
-        <div>
-          <label>
+        <div className="individual-fields">
+          <label>Name: 
             <input type="text" name="name" value={formData.name} onChange={handleChange}/>
           </label>
         </div>
-        <div>
+        <div className="individual-fields">
+        <h2>Choose Your Sauce</h2>
           <div>
             <label> Original Red
               <input id="red" type="radio" name="sauce" value="red" onChange={handleChange}/>
@@ -138,8 +154,9 @@ function FormContent(props) {
             </label>
           </div>
         </div>
-        <div>
+        <div className="individual-fields">
           <div>
+            <h2>Choose Your Toppings</h2>
             <label> Pepperoni
               <input className="toppings" type="checkbox" name="pepperoni" checked={formData.toppings.pepperoni} onChange={handleChange}/>
             </label>
@@ -180,19 +197,22 @@ function FormContent(props) {
             </label>
           </div>
         </div>
-        <div>
+        <div className="individual-fields">
+        <h2>Are You Gluten Free</h2>
           <label> Gluten Free Crust
             <input type="checkbox" name="glutenFree" checked={formData.glutenFree} onChange={handleChange}/>
           </label>
         </div>
-        <div>
-          <label> Special Instructions
+        <div className="individual-fields">
+        <h2>Any Special Instructions</h2>
+          <label>
             <textarea name="specialInstructions" value={formData.specialInstructions} onChange={handleChange} />
           </label>
         </div>
-        <div>
-          <label> Count
-            <input type="number" name="amountOfItems" value={formData.amountOfItems} onChange={handleChange}/>
+        <div className="individual-fields">
+          <h2>How Many?</h2>
+          <label>Count 
+            <input className="count" type="number" name="amountOfItems" value={formData.amountOfItems} onChange={handleChange}/>
           </label>
         </div>
         <button id="submit" disabled={disabled}>Submit</button>
